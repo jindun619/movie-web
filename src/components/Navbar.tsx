@@ -2,8 +2,8 @@ import Link from "next/link"
 
 const Navbar = () => {
     return (
-        <div className="navbar bg-base-100">
-            <Link href="/" className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+        <div className="navbar bg-primary">
+            <Link href="/" className="btn btn-ghost normal-case text-primary-content text-xl">daisyUI</Link>
         </div>
     )
 }

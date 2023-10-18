@@ -10,7 +10,9 @@ const Layout = ({ children }: LayoutProps) => {
         <>
             <Seo title="title" />
             <Navbar />
-            {children}
+            <div className="container mx-auto">
+                {children}
+            </div>
         </>
     )
 }
