@@ -14,28 +14,46 @@ export default function Home() {
     results: MovieType[]
   }
 
-  const [movies, setMovies] = useState<MoviesType>()
+  const [topratedMovies, setTopratedMovies] = useState<MoviesType>()
+  const [nowplayingMovies, setNowplayingMovies] = useState<MoviesType>()
 
   useEffect(() => {
+    // Fetching top_rated data
     axios.get(`/api/movie/top_rated`, {
       params: {
-        region: 'KR'
+        region: 'KR',
+        language: 'ko-KR'
       }
     })
     .then((res) => {
       console.log(res.data)
-      setMovies(res.data)
+      setTopratedMovies(res.data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
+    // Fetching now_playing data
+    axios.get(`/api/movie/now_playing`, {
+      params: {
+        region: 'KR',
+        language: 'ko-KR',
+      }
+    })
+    .then((res) => {
+      console.log(res.data)
+      setNowplayingMovies(res.data)
     })
     .catch((err) => {
       console.log(err)
     })
   }, [])
 
-  if(movies) {
+  if(nowplayingMovies) {
     return (
       <>
         {
-          movies.results.map((v, i) => (
+          nowplayingMovies.results.map((v, i) => (
             <Link key={i} href={`/movie/${v.id}`}>
               <div className="card shadow-xl">
                 <figure><img src={`https://image.tmdb.org/t/p/w200${v.poster_path}`} /></figure>

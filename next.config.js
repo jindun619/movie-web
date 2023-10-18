@@ -7,7 +7,7 @@ const nextConfig = {
         return [
             {
                 source: '/api/movie/:path',
-                destination: `https://api.themoviedb.org/3/movie/:path?api_key=${this.env.API_KEY}&language=ko-KR&region=KR`
+                destination: `https://api.themoviedb.org/3/movie/:path?api_key=${this.env.API_KEY}`
             }
         ]
     }

@@ -23,7 +23,12 @@ export default function MoviePage () {
     const { movieId } = router.query
 
     useEffect(() => {
-        axios.get(`/api/movie/${movieId}`)
+        axios.get(`/api/movie/${movieId}`, {
+            params: {
+                region: 'KR',
+                language: 'ko-KR'
+            }
+        })
         .then((res) => {
             console.log(res.data)
             setMovie(res.data)
