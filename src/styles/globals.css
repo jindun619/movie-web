@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+@layer base {
+    html {
+        font-family: 'Spoqa Han Sans Neo', system-ui, 'sans-serif';
+    }
+}
+
 body {
     @apply bg-black min-h-screen
 }
