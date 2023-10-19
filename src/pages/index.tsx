@@ -5,6 +5,7 @@ import axios from "axios"
 import Poster from "@/components/Poster"
 
 export default function Home() {
+  console.log("hi")
   type MovieType = {
     id: number,
     title: string,
