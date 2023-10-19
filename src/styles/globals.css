@@ -11,5 +11,5 @@
 }
 
 body {
-    @apply bg-black min-h-screen
+    @apply bg-black min-h-screen h-full
 }

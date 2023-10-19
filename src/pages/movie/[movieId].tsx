@@ -12,18 +12,21 @@ export default function MoviePage () {
         overview: string,
         popularity: number,
         poster_path: string,
+        backdrop_path: string,
         release_date: string,
         title: string,
+        tagline: string,
         vote_average: number,
         vote_count: number
     }
+
     const [movie, setMovie] = useState<MovieType>()
 
     const router = useRouter()
     const { movieId } = router.query
 
     useEffect(() => {
-        axios.get(`/api/movie/${movieId}`, {
+        axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.API_KEY}`, {
             params: {
                 region: 'KR',
                 language: 'ko-KR'
@@ -41,20 +44,18 @@ export default function MoviePage () {
     if(movie) {
         return (
             <>
-                <p className="text-xl text-primary-content">{`isAdult: ${movie.adult}`}</p>
-                {
-                    movie.genres.map((v, i) => (
-                        <p key={i} className="text-xl text-secondary">{v.name}</p>
-                    ))
-                }
-                <p className="text-xl text-primary-content">{`language: ${movie.original_language}`}</p>
-                <p className="text-xl text-primary-content">{`${movie.overview}`}</p>
-                <p className="text-xl text-primary-content">{`popularity: ${movie.popularity}`}</p>
-                <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
-                <p className="text-xl text-primary-content">{`releaseData: ${movie.release_date}`}</p>
-                <p className="text-xl text-primary-content">{`title: ${movie.title}`}</p>
-                <p className="text-xl text-primary-content">{`voteAverage: ${movie.vote_average}`}</p>
-                <p className="text-xl text-primary-content">{`voteCount: ${movie.vote_count}`}</p>
+                <div className="relative mt-12">
+                    <div className="flex">
+                        <img className="w-80 rounded-xl shadow-2xl" src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} />
+                        <div className="pl-10">
+                            <p className="text-3xl text-primary-content font-bold">{movie.title}</p>
+                            <p className="mt-5 text-xl text-primary-content font-bold italic">{movie.tagline}</p>
+                            <p className="mt-3 text-base text-neutral font-bold">Genres</p>
+                            <p className="">Genres2</p>
+                        </div>
+                    </div>
+                </div>
+                <img className="fixed left-0 top-0 h-screen opacity-20" src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`} />
             </>
         )
     }
