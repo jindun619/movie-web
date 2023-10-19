@@ -5,7 +5,6 @@ import axios from "axios"
 import Poster from "@/components/Poster"
 
 export default function Home() {
-  console.log("hi")
   type MovieType = {
     id: number,
     title: string,
@@ -18,10 +17,6 @@ export default function Home() {
   type MoviesType = {
     results: MovieType[]
   }
-
-  const [nowplayingMovies, setNowplayingMovies] = useState<MoviesType>()
-  const [popularMovies, setPopularMovies] = useState<MoviesType>()
-  const [topratedMovies, setTopratedMovies] = useState<MoviesType>()
 
   const [selected, setSelected] = useState<number>(0)
   const [selectedMovies, setSelectedMovies] = useState<MoviesType>()
@@ -111,7 +106,7 @@ export default function Home() {
     )
   } else {
     return (
-        <h1>Loading..</h1>
+      <span className="loading loading-ring loading-lg"></span>
     )
   }
 }

@@ -41,20 +41,20 @@ export default function MoviePage () {
     if(movie) {
         return (
             <>
-                <p className="text-xl text-primary">{`isAdult: ${movie.adult}`}</p>
+                <p className="text-xl text-primary-content">{`isAdult: ${movie.adult}`}</p>
                 {
                     movie.genres.map((v, i) => (
                         <p key={i} className="text-xl text-secondary">{v.name}</p>
                     ))
                 }
-                <p className="text-xl text-primary">{`language: ${movie.original_language}`}</p>
-                <p className="text-xl text-primary">{`${movie.overview}`}</p>
-                <p className="text-xl text-primary">{`popularity: ${movie.popularity}`}</p>
+                <p className="text-xl text-primary-content">{`language: ${movie.original_language}`}</p>
+                <p className="text-xl text-primary-content">{`${movie.overview}`}</p>
+                <p className="text-xl text-primary-content">{`popularity: ${movie.popularity}`}</p>
                 <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
-                <p className="text-xl text-primary">{`releaseData: ${movie.release_date}`}</p>
-                <p className="text-xl text-primary">{`title: ${movie.title}`}</p>
-                <p className="text-xl text-primary">{`voteAverage: ${movie.vote_average}`}</p>
-                <p className="text-xl text-primary">{`voteCount: ${movie.vote_count}`}</p>
+                <p className="text-xl text-primary-content">{`releaseData: ${movie.release_date}`}</p>
+                <p className="text-xl text-primary-content">{`title: ${movie.title}`}</p>
+                <p className="text-xl text-primary-content">{`voteAverage: ${movie.vote_average}`}</p>
+                <p className="text-xl text-primary-content">{`voteCount: ${movie.vote_count}`}</p>
             </>
         )
     }
