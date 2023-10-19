@@ -4,7 +4,12 @@ const config: Config = {
   content: [
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  theme: {},
-  plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["dark"]
+  },
+  plugins: [
+    require("daisyui"),
+    require('tailwindcss-animated')
+  ],
 }
 export default config

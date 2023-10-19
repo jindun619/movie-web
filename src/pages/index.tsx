@@ -10,7 +10,9 @@ export default function Home() {
     id: number,
     title: string,
     poster_path: string,
-    vote_average: number
+    vote_average: number,
+    release_date: string,
+    overview: string
   }
 
   type MoviesType = {
@@ -71,10 +73,10 @@ export default function Home() {
   if(nowplayingMovies) {
     return (
       <>
-        <div className="flex flex-wrap justify-evenly">
+        <div className="flex flex-wrap justify-evenly animate-fade-up">
           {
             nowplayingMovies.results.map((v, i) => (
-              <Poster key={i} id={v.id} title={v.title} poster_path={v.poster_path} vote_average={v.vote_average} />
+              <Poster key={i} id={v.id} title={v.title} poster_path={v.poster_path} vote_average={v.vote_average} release_date={v.release_date} overview={v.overview} />
             ))
           }
         </div>
