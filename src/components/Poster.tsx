@@ -38,7 +38,7 @@ const Poster = ({ id, title, poster_path, vote_average, release_date, overview }
                     <p className="text-center font-semibold text-neutral-500 text-sm">{vote_average}</p>
                 </div>
                 <div className={mouseOver ? "transition ease-in duration-300" : "opacity-0"}>
-                    <p className={`absolute left-0 top-0 px-7 py-5 text-primary-content transition duration-200 ease-linear`}>{overview.length > 70 ? overview.substring(0, 70) : overview}</p>
+                    <p className={`absolute left-0 top-0 px-7 py-5 text-primary-content transition duration-200 ease-linear`}>{overview.length > 70 ? `${overview.substring(0, 70)}..` : overview}</p>
                     <button className="px-2 py-1 border border-primary-content text-primary-content hover:border-info hover:text-info rounded-sm absolute left-2/4 translate-x-[-50%] bottom-24">상세정보</button>
                 </div>
             </Link>
