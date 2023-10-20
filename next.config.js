@@ -6,8 +6,12 @@ const nextConfig = {
     async rewrites() {
         return [
             {
-                source: '/api/movie/:path',
-                destination: `https://api.themoviedb.org/3/movie/:path?api_key=${this.env.API_KEY}`
+                source: '/api/movie/:path1',
+                destination: `https://api.themoviedb.org/3/movie/:path1?api_key=${this.env.API_KEY}`
+            },
+            {
+                source: '/api/movie/:path1/:path2',
+                destination: `https://api.themoviedb.org/3/movie/:path1/:path2?api_key=${this.env.API_KEY}`
             }
         ]
     }
