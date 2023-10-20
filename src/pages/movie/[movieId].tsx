@@ -4,6 +4,9 @@ import { useState, useEffect } from "react"
 
 import axios from "axios"
 
+import Main from "@/components/details/Main"
+import Casts from "@/components/details/Casts"
+
 export default function MoviePage () {
     type MovieType = {
         adult: boolean,
@@ -21,8 +24,13 @@ export default function MoviePage () {
         runtime: number
     }
     type CreditType = {
+        cast: CastType[],
+    }
+    type CastType = {
         id: number,
-        cast: any[],
+        name: string,
+        character: string,
+        profile_path: string
     }
 
     const [movie, setMovie] = useState<MovieType>()
@@ -32,7 +40,7 @@ export default function MoviePage () {
     const { movieId } = router.query
 
     useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
+        axios.get(`/api/movie/${movieId}`, {
             params: {
                 api_key: process.env.API_KEY,
                 region: 'KR',
@@ -47,7 +55,7 @@ export default function MoviePage () {
             console.log(err)
         })
 
-        axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
+        axios.get(`/api/movie/${movieId}/credits`, {
             params: {
                 api_key: process.env.API_KEY,
                 region: 'KR',
@@ -63,26 +71,11 @@ export default function MoviePage () {
         })
     }, [movieId])
 
-    if(movie) {
-        const genres: string[] = []
-        movie.genres.map(v => {
-            genres.push(v.name)
-        })
+    if(movie && credit) {
         return (
             <>
-                <div className="mt-12">
-                    <div className="flex flex-wrap md:flex-nowrap">
-                        <img className="mx-auto mb-2 w-[250px] h-[400px] md:w-[340px] md:h-[510px] rounded-xl shadow-2xl" src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} />
-                        <div className="pl-10">
-                            <p className="text-3xl text-primary-content font-bold">{movie.title}</p>
-                            <p className="mt-5 text-xl text-primary-content font-bold italic">{movie.tagline}</p>
-                            <p className="mt-3 text-base text-neutral-content font-bold">{genres.join(' ▪ ')}</p>
-                            <p className="text-base text-neutral-content font-bold">{`${movie.release_date} ▪ ${movie.runtime}분`}</p>
-                            <span className="mt-3 text-base text-primary-content font-bold">{`평점`}<p className="inline-block ml-2 text-info">{movie.vote_average}</p></span>
-                            <p className="mt-5 text-xl text-primary-content font-bold leading-8">{movie.overview}</p>
-                        </div>
-                    </div>
-                </div>
+                <Main data={movie} />
+                <Casts data={credit} />
                 <img className="fixed left-2/4 translate-x-[-50%] top-0 h-screen opacity-20 z-[-1]" src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`} />
             </>
         )

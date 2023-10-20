@@ -27,6 +27,7 @@ export default function Home() {
         // Fetching now_playing data
         axios.get(`/api/movie/now_playing`, {
           params: {
+            api_key: process.env.API_KEY,
             region: 'KR',
             language: 'ko-KR',
           }
@@ -43,6 +44,7 @@ export default function Home() {
         // Fetching popular data
         axios.get(`/api/movie/popular`, {
           params: {
+            api_key: process.env.API_KEY,
             region: 'KR',
             language: 'ko-KR'
           }
@@ -59,6 +61,7 @@ export default function Home() {
         // Fetching top_rated data
         axios.get(`/api/movie/top_rated`, {
           params: {
+            api_key: process.env.API_KEY,
             region: 'KR',
             language: 'ko-KR'
           }
