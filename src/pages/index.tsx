@@ -71,9 +71,16 @@ export default function Home() {
   if(selectedMovies) {
     const selectedClass = `text-primary border-b-4 border-primary`
     const movieH = ["현재 상영중", "인기 영화", "평점높은 영화"]
+
+    const og = {
+      title:"a",
+      image:"a",
+      description:"a"
+    }
+
     return (
       <>
-        <Seo title="홈" />
+        <Seo title="홈" og={og} />
         <div className="mt-24 mb-4">
           <p className="px-4 text-center text-5xl text-primary-content font-bold">{movieH[selected]}</p>
           <div className="flex justify-center mt-24 gap-9">

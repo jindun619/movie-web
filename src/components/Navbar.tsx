@@ -8,7 +8,7 @@ const Navbar = () => {
     const opacity = isHovering ? "opacity-100" : "opacity-70"
     return (
         <div className={`sticky top-0 navbar bg-primary z-[10] ${opacity}`} onMouseOver={() => setIsHovering(true)} onMouseOut={() => setIsHovering(false)}>
-            <Link href="/" className="btn btn-ghost normal-case text-primary-content text-xl">JoSungMinMeoRiFlix</Link>
+            <Link href="/" className="btn btn-ghost normal-case text-primary-content text-xl">조성민머리Flix</Link>
         </div>
     )
 }

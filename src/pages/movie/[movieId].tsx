@@ -75,10 +75,23 @@ export default function MoviePage () {
         }
     }, [movieId])
 
+    // type: string,
+    //     url: string,
+    //     title: string,
+    //     image: string,
+    //     description: string,
+    //     site_name: string,
+    //     locale: string
     if(movie && videos && credit) {
+        const og = {
+            title: movie.title,
+            image: `https://image.tmdb.org/t/p/w1280${movie.poster_path}`,
+            description: movie.overview
+        }
+        
         return (
             <>
-                <Seo title={movie.title} />
+                <Seo title={movie.title} og={og} />
                 <Main data={movie} />
                 <Trailer data={videos} />
                 <Casts data={credit} />
