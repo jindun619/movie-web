@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 
 import axios from "axios"
 
+import Seo from "@/components/Seo"
 import Poster from "@/components/Poster"
 
 import { MovieType } from "@/types"
@@ -72,6 +73,7 @@ export default function Home() {
     const movieH = ["현재 상영중", "인기 영화", "평점높은 영화"]
     return (
       <>
+        <Seo title="홈" />
         <div className="mt-24 mb-4">
           <p className="px-4 text-center text-5xl text-primary-content font-bold">{movieH[selected]}</p>
           <div className="flex justify-center mt-24 gap-9">

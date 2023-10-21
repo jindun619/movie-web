@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 
 import axios from "axios"
 
+import Seo from "@/components/Seo"
 import Main from "@/components/details/Main"
 import Casts from "@/components/details/Casts"
 import Trailer from "@/components/details/Trailer"
@@ -77,6 +78,7 @@ export default function MoviePage () {
     if(movie && videos && credit) {
         return (
             <>
+                <Seo title={movie.title} />
                 <Main data={movie} />
                 <Trailer data={videos} />
                 <Casts data={credit} />

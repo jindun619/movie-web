@@ -7,7 +7,7 @@ type SeoProps = {
 const Seo = ({ title }: SeoProps) => {
     return (
         <Head>
-            <title>{title}</title>
+            <title>{`${title} | 조성민머리FLIX`}</title>
         </Head>
     )
 }

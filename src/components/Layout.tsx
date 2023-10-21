@@ -1,4 +1,3 @@
-import Seo from "./Seo"
 import Navbar from "./Navbar"
 
 type LayoutProps = {
@@ -8,7 +7,6 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
     return (
         <>
-            <Seo title="title" />
             <Navbar />
             <div className="relative container mx-auto">
                 {children}
