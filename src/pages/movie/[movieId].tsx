@@ -54,50 +54,50 @@ export default function MoviePage () {
     const { movieId } = router.query
 
     useEffect(() => {
-        axios.get(`/api/movie/${movieId}`, {
-            params: {
-                api_key: process.env.API_KEY,
-                region: 'KR',
-                language: 'ko-KR'
-            }
-        })
-        .then((res) => {
-            console.log(res.data)
-            setMovie(res.data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-
-        axios.get(`/api/movie/${movieId}/credits`, {
-            params: {
-                api_key: process.env.API_KEY,
-                region: 'KR',
-                language: 'ko-KR'
-            }
-        })
-        .then((res) => {
-            console.log(res.data)
-            setCredit(res.data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-
-        axios.get(`/api/movie/${movieId}/videos`, {
-            params: {
-                api_key: process.env.API_KEY,
-                region: 'KR',
-                language: 'ko-KR'
-            }
-        })
-        .then((res) => {
-            console.log(res.data)
-            setVideos(res.data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        if(movieId) {
+            // Fetching movie details data
+            axios.get(`/api/movie/${movieId}`, {
+                params: {
+                    api_key: process.env.API_KEY,
+                    region: 'KR',
+                    language: 'ko-KR'
+                }
+            })
+            .then((res) => {
+                setMovie(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+            // Fetching movie credits data
+            axios.get(`/api/movie/${movieId}/credits`, {
+                params: {
+                    api_key: process.env.API_KEY,
+                    region: 'KR',
+                    language: 'ko-KR'
+                }
+            })
+            .then((res) => {
+                setCredit(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+            // Fetching movie videos data
+            axios.get(`/api/movie/${movieId}/videos`, {
+                params: {
+                    api_key: process.env.API_KEY,
+                    region: 'KR',
+                    language: 'ko-KR'
+                }
+            })
+            .then((res) => {
+                setVideos(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
     }, [movieId])
 
     if(movie && videos && credit) {
@@ -109,6 +109,12 @@ export default function MoviePage () {
                 <Prod data={movie.production_companies} />
                 <img className="fixed left-2/4 translate-x-[-50%] top-0 object-cover w-screen h-screen opacity-20 z-[-1]" src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`} />
             </>
+        )
+    } else {
+        return (
+            <div className="absolute left-2/4 translate-x-[-50%] top-2/4 translate-y-[-50%]">
+                <span className="loading loading-spinner loading-lg"></span>
+            </div>
         )
     }
 }

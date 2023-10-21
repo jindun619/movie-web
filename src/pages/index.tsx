@@ -33,7 +33,6 @@ export default function Home() {
           }
         })
         .then((res) => {
-          console.log(res.data)
           setSelectedMovies(res.data)
         })
         .catch((err) => {
@@ -50,7 +49,6 @@ export default function Home() {
           }
         })
         .then((res) => {
-          console.log(res.data)
           setSelectedMovies(res.data)
         })
         .catch((err) => {
@@ -67,7 +65,6 @@ export default function Home() {
           }
         })
         .then((res) => {
-          console.log(res.data)
           setSelectedMovies(res.data)
         })
         .catch((err) => {
@@ -109,7 +106,9 @@ export default function Home() {
     )
   } else {
     return (
-      <span className="loading loading-ring loading-lg"></span>
+      <div className="absolute left-2/4 translate-x-[-50%] top-2/4 translate-y-[-50%]">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
     )
   }
 }

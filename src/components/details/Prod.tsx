@@ -7,7 +7,6 @@ type ProdType = {
 export default function Prod ({ data }: {
     data: ProdType[]
 }) {
-    console.log("data:", data)
     return (
         <>
             <p className="mt-5 px-2 md:px-auto text-xl text-primary-content font-bold">제작사</p>
