@@ -1,7 +1,6 @@
 type MovieType = {
     id: number,
-    adult: boolean,
-    genres: Array<any>,
+    genres: any[],
     original_language: string,
     overview: string,
     popularity: number,
@@ -14,6 +13,28 @@ type MovieType = {
     vote_count: number,
     runtime: number,
     production_companies: any
+}
+
+type TvType = {
+    backdrop_path: string,
+    first_air_date: string,
+    genres_ids: number[],
+    id: number,
+    name: string,
+    overview: string,
+    popularity: number,
+    poster_path: string,
+    vote_average: number
+}
+
+type PosterType = {
+    type: string,   //movie or tv
+    id: number,
+    poster_path: string,
+    title: string,
+    date: string,
+    vote_average: number,
+    overview: string
 }
 
 type CastType = {
@@ -36,4 +57,4 @@ type ProdType = {
     origin_country: string
 }
 
-export type { MovieType, CastType, VideoType, ProdType }
+export type { MovieType, TvType, PosterType, CastType, VideoType, ProdType }

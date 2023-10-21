@@ -2,18 +2,12 @@ import Link from "next/link"
 
 import { useState } from "react"
 
+import { PosterType } from "@/types"
+
 import { StarIcon } from '@heroicons/react/24/solid'
 
-type PosterType = {
-    id: number,
-    title: string,
-    poster_path: string,
-    vote_average: number,
-    release_date: string,
-    overview: string
-}
 
-const Poster = ({ id, title, poster_path, vote_average, release_date, overview }: PosterType) => {
+const Poster = ({ type, id, poster_path, title, date, vote_average, overview }: PosterType) => {
 
     const [mouseOver, setMouseOver] = useState(false)
 
@@ -25,14 +19,16 @@ const Poster = ({ id, title, poster_path, vote_average, release_date, overview }
         setMouseOver(false)
     }
     
+    const detailsUrl = type === "movie" ? `/movie/${id}` : `/tv/${id}`
+
     return (
         <div className="relative w-48 md:w-56 h-[370px] mb-3 hover:scale-105 transition duration-500" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-            <Link key={id} href={`/movie/${id}`}>
+            <Link key={id} href={detailsUrl}>
                 <div>
                     <img className={`mx-auto rounded-xl ${mouseOver ? "opacity-30" : ""}`} src={`https://image.tmdb.org/t/p/w200${poster_path}`} />
                 </div>
                 <p className="text-center font-extrabold text-primary-content text-base">{title.length > 15 ? `${title.substring(0, 15)}..` : title}</p>
-                <p className="text-center font-semibold text-neutral-500 text-sm">{`개봉일: ${release_date}`}</p>
+                <p className="text-center font-semibold text-neutral-500 text-sm">{`개봉일: ${date}`}</p>
                 <div className="flex justify-center items-center">
                     <StarIcon className="h-4 w-4 text-[#ffa534] mr-1" />
                     <p className="text-center font-semibold text-neutral-500 text-sm">{vote_average}</p>
