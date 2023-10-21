@@ -1,3 +1,4 @@
+import DetailsLayout from "./DetailsLayout"
 import YoutubePlayer from "../YoutubePlayer"
 
 import { VideoType } from "@/types"
@@ -13,16 +14,15 @@ export default function Trailer ({ data }: {
 
     if(filteredData.length !== 0) {
         return (
-            <>
-                <p className="mt-5 px-2 md:px-auto text-xl text-primary-content font-bold">트레일러</p>
-                <div className="flex flex-wrap pb-8 border-b mt-5 px-2 md:px-auto">
+            <DetailsLayout label="트레일러">
+                <div className="flex flex-wrap mt-5">
                     {
                         filteredData.map((v, i) => (
                             <YoutubePlayer key={i} videoId={v.key} videoName={v.name} />
                         ))
                     }
                 </div>
-            </>
+            </DetailsLayout>
         )
     } else {
         return false
