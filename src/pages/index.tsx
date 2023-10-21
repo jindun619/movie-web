@@ -4,16 +4,9 @@ import axios from "axios"
 
 import Poster from "@/components/Poster"
 
-export default function Home() {
-  type MovieType = {
-    id: number,
-    title: string,
-    poster_path: string,
-    vote_average: number,
-    release_date: string,
-    overview: string
-  }
+import { MovieType } from "@/types"
 
+export default function Home() {
   type MoviesType = {
     results: MovieType[]
   }

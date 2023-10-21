@@ -9,43 +9,17 @@ import Casts from "@/components/details/Casts"
 import Trailer from "@/components/details/Trailer"
 import Prod from "@/components/details/Prod"
 
+import { MovieType, CastType, VideoType } from "@/types"
+
 export default function MoviePage () {
-    type MovieType = {
-        adult: boolean,
-        genres: Array<any>,
-        original_language: string,
-        overview: string,
-        popularity: number,
-        poster_path: string,
-        backdrop_path: string,
-        release_date: string,
-        title: string,
-        tagline: string,
-        vote_average: number,
-        vote_count: number,
-        runtime: number,
-        production_companies: any
-    }
     type CreditType = {
         cast: CastType[],
     }
-    type CastType = {
-        id: number,
-        name: string,
-        character: string,
-        profile_path: string
-    }
+    
     type VideosType = {
         results: VideoType[]
     }
-    type VideoType = {
-        key: string,
-        name: string,
-        official: boolean,
-        type: string
-    }
-
-
+    
     const [movie, setMovie] = useState<MovieType>()
     const [credit, setCredit] = useState<CreditType>()
     const [videos, setVideos] = useState<VideosType>()

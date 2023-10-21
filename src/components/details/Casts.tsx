@@ -1,9 +1,4 @@
-type CastType = {
-    id: number,
-    name: string,
-    character: string,
-    profile_path: string
-}
+import { CastType } from "@/types"
 
 export default function Casts ({ data }: {
     data: {

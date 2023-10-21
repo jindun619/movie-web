@@ -1,8 +1,4 @@
-type ProdType = {
-    logo_path: string,
-    name: string,
-    origin_country: string
-}
+import { ProdType } from "@/types"
 
 export default function Prod ({ data }: {
     data: ProdType[]

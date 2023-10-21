@@ -1,11 +1,6 @@
 import YoutubePlayer from "../YoutubePlayer"
 
-type VideoType = {
-    key: string,
-    name: string,
-    official: boolean,
-    type: string
-}
+import { VideoType } from "@/types"
 
 export default function Trailer ({ data }: {
     data: {

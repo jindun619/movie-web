@@ -1,17 +1,8 @@
-type DataType = {
-    data: {
-        poster_path: string,
-        title: string,
-        tagline: string,
-        genres: any[],
-        release_date: string,
-        runtime: number,
-        vote_average: number,
-        overview: string
-    }
-}
+import { MovieType } from "@/types"
 
-export default function Main ({ data }: DataType) {
+export default function Main ({ data }: {
+    data: MovieType
+}) {
     const genres: string[] = []
     data.genres.map(v => {
         genres.push(v.name)
