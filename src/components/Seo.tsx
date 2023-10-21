@@ -11,8 +11,6 @@ const Seo = ({ title, og }: {
     return (
         <Head>
             <title>{`${title} | 조성민머리FLIX`}</title>
-            <meta property="og:type" content="movie" />
-            {/* <meta property="og:url" content="https://example.com/page.html"> */}
             <meta property="og:title" content={og.title} />
             <meta property="og:image" content={og.image} />
             <meta property="og:description" content={og.description} />

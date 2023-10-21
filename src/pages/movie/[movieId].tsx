@@ -25,86 +25,22 @@ export default function MoviePage ({ movie, credit, videos }: {
     credit: CreditType,
     videos: VideosType
 }) {
-    console.log(movie, credit, videos)
-// export default function MoviePage ({ data }: any) {
-    // const [movie, setMovie] = useState<MovieType>()
-    // const [credit, setCredit] = useState<CreditType>()
-    // const [videos, setVideos] = useState<VideosType>()
-
-    // const router = useRouter()
-    // const { movieId } = router.query
-
-    // useEffect(() => {
-    //     if(movieId) {
-    //         // Fetching movie details data
-    //         axios.get(`/api/movie/${movieId}`, {
-    //             params: {
-    //                 api_key: process.env.API_KEY,
-    //                 region: 'KR',
-    //                 language: 'ko-KR'
-    //             }
-    //         })
-    //         .then((res) => {
-    //             setMovie(res.data)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    //         // Fetching movie credits data
-    //         axios.get(`/api/movie/${movieId}/credits`, {
-    //             params: {
-    //                 api_key: process.env.API_KEY,
-    //                 region: 'KR',
-    //                 language: 'ko-KR'
-    //             }
-    //         })
-    //         .then((res) => {
-    //             setCredit(res.data)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    //         // Fetching movie videos data
-    //         axios.get(`/api/movie/${movieId}/videos`, {
-    //             params: {
-    //                 api_key: process.env.API_KEY,
-    //                 region: 'KR',
-    //                 language: 'ko-KR'
-    //             }
-    //         })
-    //         .then((res) => {
-    //             setVideos(res.data)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    //     }
-    // }, [movieId])
-
-    if(movie && videos && credit) {
-        const og = {
-            title: movie.title,
-            image: `https://image.tmdb.org/t/p/w1280${movie.poster_path}`,
-            description: movie.overview
-        }
-
-        return (
-            <>
-                <Seo title={movie.title} og={og} />
-                <Main data={movie} />
-                <Trailer data={videos} />
-                <Casts data={credit} />
-                <Prod data={movie.production_companies} />
-                <img className="fixed left-2/4 translate-x-[-50%] top-0 object-cover w-screen h-screen opacity-20 z-[-1]" src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`} />
-            </>
-        )
-    } else {
-        return (
-            <div className="absolute left-2/4 translate-x-[-50%] top-2/4 translate-y-[-50%]">
-                <span className="loading loading-spinner loading-lg"></span>
-            </div>
-        )
+    const og = {
+        title: movie.title,
+        image: `https://image.tmdb.org/t/p/w1280${movie.poster_path}`,
+        description: movie.overview
     }
+
+    return (
+        <>
+            <Seo title={movie.title} og={og} />
+            <Main data={movie} />
+            <Trailer data={videos} />
+            <Casts data={credit} />
+            <Prod data={movie.production_companies} />
+            <img className="fixed left-2/4 translate-x-[-50%] top-0 object-cover w-screen h-screen opacity-20 z-[-1]" src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`} />
+        </>
+    )
 }
 
 export async function getServerSideProps(context: any) {
