@@ -24,7 +24,7 @@ const Poster = ({ id, title, poster_path, vote_average, release_date, overview }
     const handleMouseOut = () => {
         setMouseOver(false)
     }
-
+    
     return (
         <div className="relative w-56 h-[370px] mb-3 hover:scale-105 transition duration-500" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
             <Link key={id} href={`/movie/${id}`}>

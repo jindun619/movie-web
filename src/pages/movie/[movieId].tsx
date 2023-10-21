@@ -6,6 +6,8 @@ import axios from "axios"
 
 import Main from "@/components/details/Main"
 import Casts from "@/components/details/Casts"
+import Trailer from "@/components/details/Trailer"
+import Prod from "@/components/details/Prod"
 
 export default function MoviePage () {
     type MovieType = {
@@ -21,7 +23,8 @@ export default function MoviePage () {
         tagline: string,
         vote_average: number,
         vote_count: number,
-        runtime: number
+        runtime: number,
+        production_companies: any
     }
     type CreditType = {
         cast: CastType[],
@@ -32,9 +35,20 @@ export default function MoviePage () {
         character: string,
         profile_path: string
     }
+    type VideosType = {
+        results: VideoType[]
+    }
+    type VideoType = {
+        key: string,
+        name: string,
+        official: boolean,
+        type: string
+    }
+
 
     const [movie, setMovie] = useState<MovieType>()
     const [credit, setCredit] = useState<CreditType>()
+    const [videos, setVideos] = useState<VideosType>()
 
     const router = useRouter()
     const { movieId } = router.query
@@ -69,14 +83,31 @@ export default function MoviePage () {
         .catch((err) => {
             console.log(err)
         })
+
+        axios.get(`/api/movie/${movieId}/videos`, {
+            params: {
+                api_key: process.env.API_KEY,
+                region: 'KR',
+                language: 'ko-KR'
+            }
+        })
+        .then((res) => {
+            console.log(res.data)
+            setVideos(res.data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }, [movieId])
 
-    if(movie && credit) {
+    if(movie && videos && credit) {
         return (
             <>
                 <Main data={movie} />
+                <Trailer data={videos} />
                 <Casts data={credit} />
-                <img className="fixed left-2/4 translate-x-[-50%] top-0 h-screen opacity-20 z-[-1]" src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`} />
+                <Prod data={movie.production_companies} />
+                <img className="fixed left-2/4 translate-x-[-50%] top-0 object-cover w-screen h-screen opacity-20 z-[-1]" src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`} />
             </>
         )
     }

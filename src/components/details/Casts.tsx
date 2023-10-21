@@ -1,8 +1,3 @@
-type DataType = {
-    data: {
-        cast: Array<CastType>
-    }
-}
 type CastType = {
     id: number,
     name: string,
@@ -10,11 +5,15 @@ type CastType = {
     profile_path: string
 }
 
-export default function Casts ({ data }: DataType) {
+export default function Casts ({ data }: {
+    data: {
+        cast: CastType[]
+    }
+}) {
     return (
         <>
             <p className="mt-5 px-2 md:px-auto text-xl text-primary-content font-bold">배우</p>
-            <div className="flex flex-wrap mt-5 px-2 md:px-auto">
+            <div className="flex flex-wrap justify-center md:justify-normal mt-5 px-2 pb-8 md:px-auto border-b">
                 {
                     data.cast.map((v, i) => {
                         if(i < 6) {
