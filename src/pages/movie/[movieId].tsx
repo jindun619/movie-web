@@ -30,7 +30,16 @@ export default function MoviePage ({ movie, credit, videos }: {
     return (
         <>
             <Seo title={movie.title} og={og} />
-            <Main data={movie} />
+            <Main
+                poster_path={movie.poster_path}
+                title={movie.title}
+                tagline={movie.tagline}
+                genres={movie.genres}
+                date={movie.release_date}
+                runtime={movie.runtime}
+                vote_average={movie.vote_average}
+                overview={movie.overview}
+            />
             <Trailer data={videos} />
             <Casts data={credit} />
             <Prod data={movie.production_companies} />

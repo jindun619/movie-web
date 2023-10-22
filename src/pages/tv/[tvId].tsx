@@ -31,10 +31,18 @@ export default function MoviePage ({ tv, credit, videos }: {
     return (
         <>
             <Seo title={tv.name} og={og} />
-            {/* <Main data={tv} /> */}
+            <Main
+                poster_path={tv.poster_path}
+                title={tv.name}
+                tagline={tv.tagline}
+                genres={tv.genres}
+                date={tv.first_air_date}
+                vote_average={tv.vote_average}
+                overview={tv.overview}
+            />
             <Trailer data={videos} />
             <Casts data={credit} />
-            {/* <Prod data={tv.production_companies} /> */}
+            <Prod data={tv.production_companies} />
             <img className="fixed left-2/4 translate-x-[-50%] top-0 object-cover w-screen h-screen opacity-20 z-[-1]" src={`https://image.tmdb.org/t/p/w1280${tv.backdrop_path}`} />
         </>
     )

@@ -100,7 +100,7 @@ export default function TvIndexPage() {
 
     return (
       <>
-        <Seo title="홈" og={og} />
+        <Seo title="TV" og={og} />
         <div className="mt-24 mb-4">
           <p className="px-4 text-center text-5xl text-primary-content font-bold">{tvH[selected]}</p>
           <div className="flex justify-center mt-24 gap-9">

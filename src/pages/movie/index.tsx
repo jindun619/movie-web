@@ -80,7 +80,7 @@ export default function MovieIndexPage() {
 
     return (
       <>
-        <Seo title="홈" og={og} />
+        <Seo title="영화" og={og} />
         <div className="mt-24 mb-4">
           <p className="px-4 text-center text-5xl text-primary-content font-bold">{movieH[selected]}</p>
           <div className="flex justify-center mt-24 gap-9">

@@ -12,19 +12,21 @@ type MovieType = {
     vote_average: number,
     vote_count: number,
     runtime: number,
-    production_companies: any
+    production_companies: any[]
 }
 
 type TvType = {
     backdrop_path: string,
     first_air_date: string,
-    genres_ids: number[],
+    genres: any[],
     id: number,
     name: string,
     overview: string,
     popularity: number,
     poster_path: string,
-    vote_average: number
+    vote_average: number,
+    tagline: string,
+    production_companies: any[]
 }
 
 type PosterType = {

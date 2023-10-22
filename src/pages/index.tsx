@@ -1,3 +1,14 @@
+import Seo from "@/components/Seo"
+
 export default function IndexPage() {
-  return <h1>Index Page</h1>
+  const og = {
+    title:"a",
+    image:"a",
+    description:"a"
+  }
+  return (
+    <>
+      <Seo title="홈" og={og} />
+    </>
+  )
 }
