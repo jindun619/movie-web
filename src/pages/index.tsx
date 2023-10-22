@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { pageState } from "@/recoil/pageState";
 
-import axios from "axios";
+// import axios from "axios";
 
 import Seo from "@/components/Seo";
 
