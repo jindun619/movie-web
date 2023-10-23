@@ -18,9 +18,9 @@ export default function SearchPage() {
   const [searchData, setSearchData] = useRecoilState(searchDataState);
   const [searchQuery, setSearchQuery] = useRecoilState(searchQueryState);
 
-  // useEffect(() => {
-  //   setPage(3);
-  // }, []);
+  useEffect(() => {
+    setPage(3);
+  }, []);
 
   useEffect(() => {
     if (loadData) {
