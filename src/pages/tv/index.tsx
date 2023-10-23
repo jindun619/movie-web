@@ -26,24 +26,6 @@ export default function TvIndexPage() {
   useEffect(() => {
     switch (selected) {
       case 0:
-        // Fetching airingToday data
-        axios
-          .get(`/api/tv/airing_today`, {
-            params: {
-              api_key: process.env.API_KEY,
-              region: "KR",
-              language: "ko-KR",
-            },
-          })
-          .then((res) => {
-            console.log(res.data);
-            setSelectedTvs(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        break;
-      case 1:
         // Fetching onTheAir data
         axios
           .get(`/api/tv/on_the_air`, {
@@ -61,7 +43,7 @@ export default function TvIndexPage() {
             console.log(err);
           });
         break;
-      case 2:
+      case 1:
         // Fetching popular data
         axios
           .get(`/api/tv/popular`, {
@@ -79,10 +61,28 @@ export default function TvIndexPage() {
             console.log(err);
           });
         break;
-      case 3:
+      case 2:
         // Fetching top_rated data
         axios
           .get(`/api/tv/top_rated`, {
+            params: {
+              api_key: process.env.API_KEY,
+              region: "KR",
+              language: "ko-KR",
+            },
+          })
+          .then((res) => {
+            console.log(res.data);
+            setSelectedTvs(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
+      case 3:
+        // Fetching airingToday data
+        axios
+          .get(`/api/tv/airing_today`, {
             params: {
               api_key: process.env.API_KEY,
               region: "KR",
@@ -103,10 +103,10 @@ export default function TvIndexPage() {
   if (selectedTvs) {
     const selectedClass = `text-primary border-b-4 border-primary`;
     const tvH = [
-      "방영 예정",
       "현재 방영중",
       "인기 프로그램",
       "평점높은 프로그램",
+      "방영 예정",
     ];
 
     const og = {
@@ -130,7 +130,7 @@ export default function TvIndexPage() {
               onClick={() => {
                 setSelected(0);
               }}>
-              방영 예정
+              현재 방영중
             </p>
             <p
               className={`text-xl text-primary-content font-bold cursor-pointer ${
@@ -139,7 +139,7 @@ export default function TvIndexPage() {
               onClick={() => {
                 setSelected(1);
               }}>
-              현재 방영중
+              인기 프로그램
             </p>
             <p
               className={`text-xl text-primary-content font-bold cursor-pointer ${
@@ -148,7 +148,7 @@ export default function TvIndexPage() {
               onClick={() => {
                 setSelected(2);
               }}>
-              인기 프로그램
+              평점높은 프로그램
             </p>
             <p
               className={`text-xl text-primary-content font-bold cursor-pointer ${
@@ -157,7 +157,7 @@ export default function TvIndexPage() {
               onClick={() => {
                 setSelected(3);
               }}>
-              평점높은 프로그램
+              방영 예정
             </p>
           </div>
         </div>

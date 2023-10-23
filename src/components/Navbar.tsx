@@ -20,6 +20,25 @@ const Navbar = () => {
     }
   };
 
+  const pages = [
+    {
+      name: "홈",
+      url: "/home",
+    },
+    {
+      name: "영화",
+      url: "/movie",
+    },
+    {
+      name: "TV",
+      url: "/tv",
+    },
+    {
+      name: "검색",
+      url: "/search",
+    },
+  ];
+
   return (
     <div
       className={`sticky top-0 navbar bg-primary z-[10] ${opacity}`}
@@ -33,21 +52,16 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-end">
-        <Link
-          className={`text-xl font-bold px-5 h-full ${getColor(0)}`}
-          href="/">
-          홈
-        </Link>
-        <Link
-          className={`text-xl font-bold px-5 h-full ${getColor(1)}`}
-          href="/movie">
-          영화
-        </Link>
-        <Link
-          className={`text-xl font-bold px-5 h-full ${getColor(2)}`}
-          href="/tv">
-          TV
-        </Link>
+        {pages.map((v, i) => {
+          return (
+            <Link
+              key={i}
+              className={`text-xl font-bold px-5 h-full ${getColor(i)}`}
+              href={v.url}>
+              {v.name}
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
