@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useSetRecoilState } from "recoil";
-import { pageState } from "../../recoil/pageState";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { pageState } from "@/recoil/page";
+import { tvSelectedState } from "@/recoil/tvSelected";
 
 import axios from "axios";
 
@@ -12,6 +13,8 @@ import { TvType } from "@/types";
 export default function TvIndexPage() {
   const setPage = useSetRecoilState(pageState);
 
+  const [selected, setSelected] = useRecoilState(tvSelectedState);
+
   useEffect(() => {
     setPage(2);
   }, []);
@@ -20,7 +23,6 @@ export default function TvIndexPage() {
     results: TvType[];
   };
 
-  const [selected, setSelected] = useState<number>(0);
   const [selectedTvs, setSelectedTvs] = useState<TvsType>();
 
   useEffect(() => {
@@ -36,7 +38,6 @@ export default function TvIndexPage() {
             },
           })
           .then((res) => {
-            console.log(res.data);
             setSelectedTvs(res.data);
           })
           .catch((err) => {
@@ -123,42 +124,17 @@ export default function TvIndexPage() {
             {tvH[selected]}
           </p>
           <div className="flex justify-center mt-24 gap-9">
-            <p
-              className={`text-xl text-primary-content font-bold cursor-pointer ${
-                selected === 0 ? selectedClass : ""
-              }`}
-              onClick={() => {
-                setSelected(0);
-              }}>
-              현재 방영중
-            </p>
-            <p
-              className={`text-xl text-primary-content font-bold cursor-pointer ${
-                selected === 1 ? selectedClass : ""
-              }`}
-              onClick={() => {
-                setSelected(1);
-              }}>
-              인기 프로그램
-            </p>
-            <p
-              className={`text-xl text-primary-content font-bold cursor-pointer ${
-                selected === 2 ? selectedClass : ""
-              }`}
-              onClick={() => {
-                setSelected(2);
-              }}>
-              평점높은 프로그램
-            </p>
-            <p
-              className={`text-xl text-primary-content font-bold cursor-pointer ${
-                selected === 3 ? selectedClass : ""
-              }`}
-              onClick={() => {
-                setSelected(3);
-              }}>
-              방영 예정
-            </p>
+            {tvH.map((v, i) => (
+              <p
+                className={`text-xl text-primary-content font-bold cursor-pointer ${
+                  selected === i ? selectedClass : ""
+                }`}
+                onClick={() => {
+                  setSelected(i);
+                }}>
+                {v}
+              </p>
+            ))}
           </div>
         </div>
         <div className="flex flex-wrap justify-evenly animate-fade-up">

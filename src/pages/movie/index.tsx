@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useSetRecoilState } from "recoil";
-import { pageState } from "../../recoil/pageState";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { pageState } from "@/recoil/page";
+import { movieSelectedState } from "@/recoil/movieSelected";
 
 import axios from "axios";
 
@@ -12,6 +13,8 @@ import { MovieType } from "@/types";
 export default function MovieIndexPage() {
   const setPage = useSetRecoilState(pageState);
 
+  const [selected, setSelected] = useRecoilState(movieSelectedState);
+
   useEffect(() => {
     setPage(1);
   }, []);
@@ -20,7 +23,6 @@ export default function MovieIndexPage() {
     results: MovieType[];
   };
 
-  const [selected, setSelected] = useState<number>(0);
   const [selectedMovies, setSelectedMovies] = useState<MoviesType>();
 
   useEffect(() => {
@@ -97,33 +99,17 @@ export default function MovieIndexPage() {
             {movieH[selected]}
           </p>
           <div className="flex justify-center mt-24 gap-9">
-            <p
-              className={`text-sm md:text-xl text-primary-content font-bold cursor-pointer ${
-                selected === 0 ? selectedClass : ""
-              }`}
-              onClick={() => {
-                setSelected(0);
-              }}>
-              현재 상영중
-            </p>
-            <p
-              className={`text-sm md:text-xl text-primary-content font-bold cursor-pointer ${
-                selected === 1 ? selectedClass : ""
-              }`}
-              onClick={() => {
-                setSelected(1);
-              }}>
-              인기 영화
-            </p>
-            <p
-              className={`text-sm md:text-xl text-primary-content font-bold cursor-pointer ${
-                selected === 2 ? selectedClass : ""
-              }`}
-              onClick={() => {
-                setSelected(2);
-              }}>
-              평점높은 영화
-            </p>
+            {movieH.map((v, i) => (
+              <p
+                className={`text-sm md:text-xl text-primary-content font-bold cursor-pointer ${
+                  selected === i ? selectedClass : ""
+                }`}
+                onClick={() => {
+                  setSelected(i);
+                }}>
+                {v}
+              </p>
+            ))}
           </div>
         </div>
         <div className="flex flex-wrap justify-evenly animate-fade-up">

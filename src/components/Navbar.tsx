@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 import { useRecoilValue } from "recoil";
-import { pageState } from "@/recoil/pageState";
+import { pageState } from "@/recoil/page";
 
 const Navbar = () => {
   const page = useRecoilValue(pageState);

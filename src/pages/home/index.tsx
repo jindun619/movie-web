@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSetRecoilState } from "recoil";
-import { pageState } from "@/recoil/pageState";
+import { pageState } from "@/recoil/page";
 
 import axios from "axios";
 
