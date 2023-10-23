@@ -15,9 +15,9 @@ export default function TvIndexPage() {
 
   const [selected, setSelected] = useRecoilState(tvSelectedState);
 
-  useEffect(() => {
-    setPage(2);
-  }, []);
+  // useEffect(() => {
+  //   setPage(2);
+  // }, []);
 
   type TvsType = {
     results: TvType[];

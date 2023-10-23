@@ -14,9 +14,9 @@ export default function HomePage() {
 
   const setPage = useSetRecoilState(pageState);
 
-  useEffect(() => {
-    setPage(0);
-  }, []);
+  // useEffect(() => {
+  //   setPage(0);
+  // }, []);
 
   // si xun huan
   useEffect(() => {

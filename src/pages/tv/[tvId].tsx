@@ -31,9 +31,9 @@ export default function MoviePage({
 }) {
   const setPage = useSetRecoilState(pageState);
 
-  useEffect(() => {
-    setPage(2);
-  }, []);
+  // useEffect(() => {
+  //   setPage(2);
+  // }, []);
 
   const og = {
     title: tv.name,
