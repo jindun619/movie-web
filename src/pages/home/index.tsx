@@ -9,8 +9,8 @@ import Seo from "@/components/Seo";
 import { MovieType } from "@/types";
 
 export default function HomePage() {
-  const [movie, setMovie] = useState<MovieType>();
-  const [video, setVideo] = useState();
+  // const [movie, setMovie] = useState<MovieType>();
+  // const [video, setVideo] = useState();
 
   const setPage = useSetRecoilState(pageState);
 
@@ -18,25 +18,25 @@ export default function HomePage() {
     setPage(0);
   }, []);
 
-  // si xun huan
-  useEffect(() => {
-    axios
-      .get(`/api/trending/movie/day`, {
-        params: {
-          api_key: process.env.API_KEY,
-          region: "KR",
-          language: "ko-KR",
-          // page: 1,
-        },
-      })
-      .then((res) => {
-        console.log(res.data.results);
-        setMovie(res.data.results[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // Fetch Trending Movie Data
+  // useEffect(() => {
+  //   axios
+  //     .get(`/api/trending/movie/day`, {
+  //       params: {
+  //         api_key: process.env.API_KEY,
+  //         region: "KR",
+  //         language: "ko-KR",
+  //         // page: 1,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data.results);
+  //       setMovie(res.data.results[0]);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   const og = {
     title: "홈",

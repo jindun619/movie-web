@@ -55,7 +55,6 @@ export default function TvIndexPage() {
             },
           })
           .then((res) => {
-            console.log(res.data);
             setSelectedTvs(res.data);
           })
           .catch((err) => {
@@ -73,7 +72,6 @@ export default function TvIndexPage() {
             },
           })
           .then((res) => {
-            console.log(res.data);
             setSelectedTvs(res.data);
           })
           .catch((err) => {
@@ -91,7 +89,6 @@ export default function TvIndexPage() {
             },
           })
           .then((res) => {
-            console.log(res.data);
             setSelectedTvs(res.data);
           })
           .catch((err) => {
@@ -111,7 +108,7 @@ export default function TvIndexPage() {
     ];
 
     const og = {
-      title: "a",
+      title: "TV",
       image: "a",
       description: "a",
     };
