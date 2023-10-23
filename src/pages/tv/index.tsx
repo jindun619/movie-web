@@ -126,6 +126,7 @@ export default function TvIndexPage() {
           <div className="flex justify-center mt-24 gap-9">
             {tvH.map((v, i) => (
               <p
+                key={i}
                 className={`text-xl text-primary-content font-bold cursor-pointer ${
                   selected === i ? selectedClass : ""
                 }`}

@@ -101,6 +101,7 @@ export default function MovieIndexPage() {
           <div className="flex justify-center mt-24 gap-9">
             {movieH.map((v, i) => (
               <p
+                key={i}
                 className={`text-sm md:text-xl text-primary-content font-bold cursor-pointer ${
                   selected === i ? selectedClass : ""
                 }`}
