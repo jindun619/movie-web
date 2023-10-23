@@ -15,9 +15,9 @@ export default function MovieIndexPage() {
 
   const [selected, setSelected] = useRecoilState(movieSelectedState);
 
-  // useEffect(() => {
-  //   setPage(1);
-  // }, []);
+  useEffect(() => {
+    setPage(1);
+  }, []);
 
   type MoviesType = {
     results: MovieType[];
