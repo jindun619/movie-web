@@ -38,6 +38,15 @@ type TvType = {
   production_companies: any[];
 };
 
+type TvType2 = {
+  id: number;
+  overview: string;
+  poster_path: string;
+  first_air_date: string;
+  name: string;
+  vote_average: number;
+};
+
 type PosterType = {
   type: string; //movie or tv
   id: number;
@@ -72,6 +81,7 @@ export type {
   MovieType,
   MovieType2,
   TvType,
+  TvType2,
   PosterType,
   CastType,
   VideoType,
