@@ -28,6 +28,23 @@ export default function TvIndexPage() {
   useEffect(() => {
     switch (selected) {
       case 0:
+        // Fetching airingToday data
+        axios
+          .get(`/api/tv/airing_today`, {
+            params: {
+              api_key: process.env.API_KEY,
+              region: "KR",
+              language: "ko-KR",
+            },
+          })
+          .then((res) => {
+            setSelectedTvs(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
+      case 1:
         // Fetching onTheAir data
         axios
           .get(`/api/tv/on_the_air`, {
@@ -44,7 +61,7 @@ export default function TvIndexPage() {
             console.log(err);
           });
         break;
-      case 1:
+      case 2:
         // Fetching popular data
         axios
           .get(`/api/tv/popular`, {
@@ -61,27 +78,10 @@ export default function TvIndexPage() {
             console.log(err);
           });
         break;
-      case 2:
+      case 3:
         // Fetching top_rated data
         axios
           .get(`/api/tv/top_rated`, {
-            params: {
-              api_key: process.env.API_KEY,
-              region: "KR",
-              language: "ko-KR",
-            },
-          })
-          .then((res) => {
-            setSelectedTvs(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        break;
-      case 3:
-        // Fetching airingToday data
-        axios
-          .get(`/api/tv/airing_today`, {
             params: {
               api_key: process.env.API_KEY,
               region: "KR",
@@ -101,10 +101,10 @@ export default function TvIndexPage() {
   if (selectedTvs) {
     const selectedClass = `text-primary border-b-4 border-primary`;
     const tvH = [
+      "오늘 방영",
       "현재 방영중",
       "인기 프로그램",
       "평점높은 프로그램",
-      "방영 예정",
     ];
 
     const og = {
@@ -117,14 +117,14 @@ export default function TvIndexPage() {
       <>
         <Seo title="TV" og={og} />
         <div className="mt-24 mb-4">
-          <p className="px-4 text-center text-5xl text-primary-content font-bold">
+          <p className="px-4 text-center text-3xl md:text-5xl text-primary-content font-bold">
             {tvH[selected]}
           </p>
-          <div className="flex justify-center mt-24 gap-9">
+          <div className="flex justify-center mt-24 gap-3 md:gap-9">
             {tvH.map((v, i) => (
               <p
                 key={i}
-                className={`text-xl text-primary-content font-bold cursor-pointer ${
+                className={`text-sm md:text-xl text-primary-content font-bold cursor-pointer ${
                   selected === i ? selectedClass : ""
                 }`}
                 onClick={() => {

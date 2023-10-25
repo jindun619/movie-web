@@ -74,7 +74,7 @@ export default function SearchMoviePage() {
         {/* SEARCH BAR */}
         <SearchBar type={0} />
         {/* ''에 대한 검색결과 */}
-        <p className="mt-10 text-center text-4xl text-primary-content font-bold">
+        <p className="mt-10 text-center text-2xl md:text-4xl text-primary-content font-bold">
           {`'${queryStr}'에 대한 검색 결과`}
         </p>
         {/* TYPE BUTTONS GROUP */}

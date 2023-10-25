@@ -56,7 +56,9 @@ const Navbar = () => {
           return (
             <Link
               key={i}
-              className={`text-xl font-bold px-5 h-full ${getColor(i)}`}
+              className={`text-sm md:text-xl font-bold px-3 md:px-5 h-full ${getColor(
+                i
+              )}`}
               href={v.url}>
               {v.name}
             </Link>
