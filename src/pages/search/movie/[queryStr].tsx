@@ -72,7 +72,7 @@ export default function SearchMoviePage() {
       <Seo title="검색" og={og} />
       <div>
         {/* SEARCH BAR */}
-        <SearchBar type={1} />
+        <SearchBar type={0} />
         {/* ''에 대한 검색결과 */}
         <p className="mt-10 text-center text-4xl text-primary-content font-bold">
           {`'${queryStr}'에 대한 검색 결과`}
