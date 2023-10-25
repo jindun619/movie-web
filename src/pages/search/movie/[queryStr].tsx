@@ -5,7 +5,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { pageState } from "@/recoil/page";
 import { searchMovieDataState } from "@/recoil/searchMovieData";
 import { searchQueryState } from "@/recoil/searchQuery";
-import { searchTypeState } from "@/recoil/searchtype";
+import { searchTypeState } from "@/recoil/searchType";
 
 import axios from "axios";
 
@@ -56,10 +56,10 @@ export default function SearchMoviePage() {
     setLoadedDone(true);
   }, [queryStr]);
 
-  const searchTypesKo = ["영화", "TV", "인물"];
+  const searchTypesKo = ["영화", "TV"];
   const selectedClass = `text-primary border-b-4 border-primary`;
 
-  const searchTypes = ["movie", "tv", "person"];
+  const searchTypes = ["movie", "tv"];
 
   const og = {
     title: "검색",

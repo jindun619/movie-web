@@ -24,6 +24,9 @@ export default function SearchPage() {
       <div>
         {/* SEARCH BAR */}
         <SearchBar type={0} />
+        <p className="mt-10 text-center text-2xl md:text-4xl text-primary-content font-bold">
+          영화 혹은 TV 프로그램 검색
+        </p>
       </div>
     </>
   );
