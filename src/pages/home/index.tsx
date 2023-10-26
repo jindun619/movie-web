@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { pageState } from "@/recoil/page";
 
@@ -19,7 +19,6 @@ export default function HomePage({
   movies: MovieType2[];
   tvs: TvType2[];
 }) {
-  console.log(movies);
   const setPage = useSetRecoilState(pageState);
 
   useEffect(() => {
