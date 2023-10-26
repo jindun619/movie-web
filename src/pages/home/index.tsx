@@ -49,9 +49,8 @@ export default function HomePage({
           }}
           aria-label="React Splide Example">
           {movies.map((v, i) => (
-            <SplideSlide>
+            <SplideSlide key={i}>
               <Poster
-                key={i}
                 type="movie"
                 id={v.id}
                 poster_path={v.poster_path}
@@ -75,9 +74,8 @@ export default function HomePage({
           }}
           aria-label="React Splide Example">
           {tvs.map((v, i) => (
-            <SplideSlide>
+            <SplideSlide key={i}>
               <Poster
-                key={i}
                 type="tv"
                 id={v.id}
                 poster_path={v.poster_path}
