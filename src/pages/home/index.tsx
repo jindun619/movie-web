@@ -39,7 +39,7 @@ export default function HomePage({
         <p className="mt-20 pl-5 text-3xl text-primary-content font-bold">
           영화 추천
         </p>
-        {/* <Splide
+        <Splide
           options={{
             rewind: true,
             fixedWidth: "14rem",
@@ -62,11 +62,11 @@ export default function HomePage({
               />
             </SplideSlide>
           ))}
-        </Splide> */}
+        </Splide>
         <p className="mt-10 pl-5 text-3xl text-primary-content font-bold">
           TV 프로그램 추천
         </p>
-        {/* <Splide
+        <Splide
           options={{
             rewind: true,
             fixedWidth: "14rem",
@@ -88,7 +88,7 @@ export default function HomePage({
               />
             </SplideSlide>
           ))}
-        </Splide> */}
+        </Splide>
       </div>
     </>
   );
