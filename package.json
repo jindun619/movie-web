@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@splidejs/react-splide": "^0.7.12",
     "axios": "^1.5.1",
     "next": "13.5.5",
     "react": "^18",

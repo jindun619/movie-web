@@ -4,12 +4,22 @@ import { pageState } from "@/recoil/page";
 
 import axios from "axios";
 
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css/sea-green";
+
 import Seo from "@/components/Seo";
+import Poster from "@/components/Poster";
 
-import { MovieType } from "@/types";
+import { MovieType2, TvType2 } from "@/types";
 
-export default function HomePage({ res1, res2 }: { res1: any[]; res2: any[] }) {
-  console.log(res1, res2);
+export default function HomePage({
+  movies,
+  tvs,
+}: {
+  movies: MovieType2[];
+  tvs: TvType2[];
+}) {
+  console.log(movies);
   const setPage = useSetRecoilState(pageState);
 
   useEffect(() => {
@@ -21,10 +31,65 @@ export default function HomePage({ res1, res2 }: { res1: any[]; res2: any[] }) {
     image: "a",
     description: "",
   };
+
   return (
     <>
       <Seo title="홈" og={og} />
-      <div>home</div>
+      <div>
+        <p className="mt-20 pl-5 text-3xl text-primary-content font-bold">
+          영화 추천
+        </p>
+        <Splide
+          options={{
+            rewind: true,
+            fixedWidth: "14rem",
+            perMove: 1,
+            pagination: false,
+            padding: 0,
+          }}
+          aria-label="React Splide Example">
+          {movies.map((v, i) => (
+            <SplideSlide>
+              <Poster
+                key={i}
+                type="movie"
+                id={v.id}
+                poster_path={v.poster_path}
+                title={v.title}
+                date={v.release_date}
+                vote_average={v.vote_average}
+                overview={v.overview}
+              />
+            </SplideSlide>
+          ))}
+        </Splide>
+        <p className="mt-10 pl-5 text-3xl text-primary-content font-bold">
+          TV 프로그램 추천
+        </p>
+        <Splide
+          options={{
+            rewind: true,
+            fixedWidth: "14rem",
+            perMove: 1,
+            pagination: false,
+          }}
+          aria-label="React Splide Example">
+          {tvs.map((v, i) => (
+            <SplideSlide>
+              <Poster
+                key={i}
+                type="tv"
+                id={v.id}
+                poster_path={v.poster_path}
+                title={v.name}
+                date={v.first_air_date}
+                vote_average={v.vote_average}
+                overview={v.overview}
+              />
+            </SplideSlide>
+          ))}
+        </Splide>
+      </div>
     </>
   );
 }
@@ -41,24 +106,26 @@ export async function getServerSideProps() {
         language: "ko-KR",
       },
     });
-    const movieId = res1.data.movie.results[0].id;
 
-    //  Fetching movie details data
-    const res2 = await axios.get(`${baseUrl}/movie/${movieId}`, {
+    // Fetching trending tv by day
+    const res2 = await axios.get(`${baseUrl}/trending/tv/day`, {
       params: {
         api_key: process.env.API_KEY,
         region: "KR",
         language: "ko-KR",
       },
     });
-    const movie = res2.data;
+
+    const movies = res1.data.results;
+    const tvs = res2.data.results;
+
     return {
-      props: { res1: res1.data.results, res2: res2.data.results },
+      props: { movies, tvs },
     };
   } catch (error) {
     return {
       props: {
-        error: error,
+        error: "aa",
       },
     };
   }
