@@ -5,7 +5,7 @@ import { pageState } from "@/recoil/page";
 import axios from "axios";
 
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-// import "@splidejs/react-splide/css/sea-green";
+import "@splidejs/react-splide/css/sea-green";
 
 import Seo from "@/components/Seo";
 import Poster from "@/components/Poster";
