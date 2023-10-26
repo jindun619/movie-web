@@ -29,7 +29,7 @@ const Poster = ({
 
   return (
     <div
-      className="relative w-48 md:w-56 h-[370px] mb-3 hover:scale-105 transition duration-500"
+      className="relative w-48 md:w-56 h-[370px] mb-3 hover:scale-105 transition duration-500 animate-fade-up"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}>
       <Link key={id} href={detailsUrl}>

@@ -15,10 +15,6 @@ export default function MovieIndexPage() {
 
   const [selected, setSelected] = useRecoilState(movieSelectedState);
 
-  useEffect(() => {
-    setPage(1);
-  }, []);
-
   type MoviesType = {
     results: MovieType[];
   };
@@ -26,6 +22,11 @@ export default function MovieIndexPage() {
   const [selectedMovies, setSelectedMovies] = useState<MoviesType>();
 
   useEffect(() => {
+    setPage(1);
+  }, []);
+
+  useEffect(() => {
+    setSelectedMovies({ results: [] });
     switch (selected) {
       case 0:
         // Fetching now_playing data
@@ -113,7 +114,7 @@ export default function MovieIndexPage() {
             ))}
           </div>
         </div>
-        <div className="flex flex-wrap justify-evenly animate-fade-up">
+        <div className="flex flex-wrap justify-evenly">
           {selectedMovies.results.map((v, i) => (
             <Poster
               key={i}

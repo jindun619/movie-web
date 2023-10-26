@@ -15,10 +15,6 @@ export default function TvIndexPage() {
 
   const [selected, setSelected] = useRecoilState(tvSelectedState);
 
-  useEffect(() => {
-    setPage(2);
-  }, []);
-
   type TvsType = {
     results: TvType[];
   };
@@ -26,6 +22,11 @@ export default function TvIndexPage() {
   const [selectedTvs, setSelectedTvs] = useState<TvsType>();
 
   useEffect(() => {
+    setPage(2);
+  }, []);
+
+  useEffect(() => {
+    setSelectedTvs({ results: [] });
     switch (selected) {
       case 0:
         // Fetching airingToday data
