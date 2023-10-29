@@ -42,7 +42,7 @@ const Poster = ({
         <p className="text-center font-extrabold text-primary-content text-base">
           {title.length > 15 ? `${title.substring(0, 15)}..` : title}
         </p>
-        <p className="text-center font-semibold text-neutral-500 text-sm">{`개봉일: ${date}`}</p>
+        <p className="text-center font-semibold text-neutral-500 text-sm">{`${type==="movie" ? "개봉일" : "첫 방영"}: ${date}`}</p>
         <div className="flex justify-center items-center">
           <StarIcon className="h-4 w-4 text-[#ffa534] mr-1" />
           <p className="text-center font-semibold text-neutral-500 text-sm">

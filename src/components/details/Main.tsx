@@ -8,12 +8,13 @@ export default function Main ({ poster_path, title, tagline, genres, date, runti
     vote_average: number,
     overview: string
 }) {
+
     const genresStr: string[] = []
     genres.map(v => {
         genresStr.push(v.name)
     })
 
-    const runTime = runtime ? `${date} ▪ ${runtime}분` : ""
+    const runTime = runtime ? `${date} ▪ ${runtime}분` : `${date}`
 
     return (
             <div className="flex flex-wrap md:flex-nowrap mt-12 pb-8 border-b">
