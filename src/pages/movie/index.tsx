@@ -13,12 +13,10 @@ import { MovieType } from "@/types";
 export default function MovieIndexPage() {
   const setPage = useSetRecoilState(pageState);
 
-  const [selected, setSelected] = useRecoilState(movieSelectedState);
-
   type MoviesType = {
     results: MovieType[];
   };
-
+  const [selected, setSelected] = useRecoilState(movieSelectedState);
   const [selectedMovies, setSelectedMovies] = useState<MoviesType>();
 
   useEffect(() => {
