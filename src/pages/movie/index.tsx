@@ -27,7 +27,7 @@ export default function MovieIndexPage() {
   useEffect(() => {
     setSelectedMovies({ results: [] });
     switch (selected) {
-      case 1:
+      case 0:
         // Fetching now_playing data
         axios
           .get(`/api/movie/now_playing`, {
@@ -44,7 +44,7 @@ export default function MovieIndexPage() {
             console.log(err);
           });
         break;
-      case 2:
+      case 1:
         // Fetching popular data
         axios
           .get(`/api/movie/popular`, {
@@ -61,7 +61,7 @@ export default function MovieIndexPage() {
             console.log(err);
           });
         break;
-      case 0:
+      case 2:
         // Fetching top_rated data
         axios
           .get(`/api/movie/top_rated`, {
