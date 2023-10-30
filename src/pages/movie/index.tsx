@@ -25,23 +25,6 @@ export default function MovieIndexPage() {
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`https://api.themoviedb.org/3/movie/now_playing`, {
-        params: {
-          api_key: process.env.API_KEY,
-          region: "KR",
-          language: "ko-KR",
-        },
-      })
-      .then((res) => {
-        console.log("hey, ", res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  useEffect(() => {
     setSelectedMovies({ results: [] });
     switch (selected) {
       case 0:
@@ -99,8 +82,6 @@ export default function MovieIndexPage() {
   }, [selected]);
 
   if (selectedMovies) {
-    console.log(selectedMovies);
-
     const selectedClass = `text-primary border-b-4 border-primary`;
     const movieH = ["현재 상영중", "인기 영화", "평점높은 영화"];
 
