@@ -37,6 +37,7 @@ export default function MovieIndexPage() {
             },
           })
           .then((res) => {
+            console.log(res.data);
             setSelectedMovies(res.data);
           })
           .catch((err) => {
