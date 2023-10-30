@@ -25,6 +25,23 @@ export default function MovieIndexPage() {
   }, []);
 
   useEffect(() => {
+    axios
+      .get(`/api/movie/now_playing`, {
+        params: {
+          api_key: process.env.API_KEY,
+          region: "KR",
+          language: "ko-KR",
+        },
+      })
+      .then((res) => {
+        console.log("hey, ", res.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
     setSelectedMovies({ results: [] });
     switch (selected) {
       case 0:
