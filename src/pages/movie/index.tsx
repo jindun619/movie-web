@@ -37,7 +37,6 @@ export default function MovieIndexPage() {
             },
           })
           .then((res) => {
-            console.log(res.data);
             setSelectedMovies(res.data);
           })
           .catch((err) => {
@@ -80,6 +79,10 @@ export default function MovieIndexPage() {
         break;
     }
   }, [selected]);
+
+  useEffect(() => {
+    console.log(selectedMovies);
+  }, [selectedMovies]);
 
   if (selectedMovies) {
     const selectedClass = `text-primary border-b-4 border-primary`;
