@@ -26,7 +26,7 @@ export default function MovieIndexPage() {
 
   useEffect(() => {
     axios
-      .get(`/api/movie/now_playing`, {
+      .get(`https://api.themoviedb.org/3/movie/now_playing`, {
         params: {
           api_key: process.env.API_KEY,
           region: "KR",
@@ -34,7 +34,7 @@ export default function MovieIndexPage() {
         },
       })
       .then((res) => {
-        console.log("hey, ", res.data)
+        console.log("hey, ", res.data);
       })
       .catch((err) => {
         console.log(err);
