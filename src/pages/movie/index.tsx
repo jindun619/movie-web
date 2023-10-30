@@ -81,11 +81,9 @@ export default function MovieIndexPage() {
     }
   }, [selected]);
 
-  useEffect(() => {
+  if (selectedMovies && selectedMovies.results.length !== 0) {
     console.log(selectedMovies);
-  }, [selectedMovies]);
 
-  if (selectedMovies) {
     const selectedClass = `text-primary border-b-4 border-primary`;
     const movieH = ["현재 상영중", "인기 영화", "평점높은 영화"];
 
