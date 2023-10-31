@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎬영화앱
 
-## Getting Started
+https://josungminmeoriflix.vercel.app/home
 
-First, run the development server:
+## 📚 사용 스택
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![React](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black)![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![Typescript](https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Recoil](https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# 💡기능들
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Home 페이지**: Daily Trending 영화, TV프로그램 추천
+  ![img1](./readmeImg/1.webp)
+- **영화 페이지**: 현재 상영중, 인기 영화, 평점높은 영화 나열
+  ![img2](./readmeImg/2.webp)
+- **TV 페이지**: 오늘 방영, 현재 방영중, 인기 프로그램, 평점높은 프로그램 나열
+  ![img3](./readmeImg/3.webp)
+- **검색 페이지**: 영화 혹은 TV프로그램 검색
+  ![img4](./readmeImg/4.webp)
+- **상세 페이지**: 영화, TV프로그램 상세정보 표시
+  ![img5](./readmeImg/5.webp)
