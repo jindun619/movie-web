@@ -1,4 +1,4 @@
-# 🎬영화앱
+# 🎬영화웹앱
 
 https://josungminmeoriflix.vercel.app/home
 
