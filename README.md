@@ -1,42 +1,64 @@
-# 🎬영화웹앱
+# 🎬 Movie-Web
 
-https://josungminmeoriflix.vercel.app/home
+https://jindun-movie-web.vercel.app/home
 
-## 📚 사용 스택
+Movie-Web is a web application built with **Next.js** and **TypeScript** that allows users to explore movies and TV shows. The app fetches data from **TMDB** (The Movie Database), a free and open-source RESTful API, and displays it in an organized and user-friendly way. All data is fetched server-side for better performance, and **Recoil** is used for efficient state management to optimize resource usage.
+
+## 📚 Tech Stack
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 ![Typescript](https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Recoil](https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
-## 💡기능들
+- **API**: [TMDB](https://developer.themoviedb.org/)
+- **Slider Library**: [Splide](https://splidejs.com/)
 
-### **Home 페이지**
+## 💡 Features
 
-- Daily Trending 영화, TV프로그램 추천
+### **Home Page**
+
+- Displays daily trending movies and TV shows.
+- Uses **Splide** to create a slider for recommended movies and TV shows, allowing users to swipe through them.
 
 ![img1](./readmeImg/1.webp)
 
-### **영화 페이지**
+### **Movie Page**
 
-- 현재 상영중, 인기 영화, 평점높은 영화 나열
+- Lists movies in the following categories:
+  - Now Playing
+  - Popular Movies
+  - Top Rated Movies
 
 ![img2](./readmeImg/2.webp)
 
-### **TV 페이지**
+### **TV Page**
 
-- 오늘 방영, 현재 방영중, 인기 프로그램, 평점높은 프로그램 나열
+- Lists TV shows in the following categories:
+  - Airing Today
+  - Currently Airing
+  - Popular Shows
+  - Top Rated Shows
 
 ![img3](./readmeImg/3.webp)
 
-### **검색 페이지**
+### **Search Page**
 
-- 영화 혹은 TV프로그램 검색
+- Allows users to search for movies and TV shows by name.
 
 ![img4](./readmeImg/4.webp)
 
-### **상세 페이지**
+### **Detail Page**
 
-- 영화, TV프로그램 상세정보 표시
+- Displays detailed information about a selected movie or TV show.
+- Users can navigate to this page by clicking on any movie or TV show card.
 
 ![img5](./readmeImg/5.webp)
+
+## Key Learnings
+
+- Implemented server-side data fetching for better performance.
+- Utilized **Recoil** for efficient state management and resource optimization.
+- Integrated **Splide** for creating interactive sliders.
+- Designed a responsive and modern UI using **TailwindCSS**.
+- Gained experience in working with external APIs, specifically **TMDB**.
