@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -12,11 +12,16 @@ import axios from "axios";
 import Seo from "@/components/Seo";
 import Poster from "@/components/Poster";
 import SearchBar from "@/components/SearchBar";
+import { GetServerSideProps } from "next";
+import { MovieType2 } from "@/types";
 
-export default function SearchMoviePage() {
+interface SearchMoviePageProps {
+  searchResult: MovieType2[];
+}
+export default function SearchMoviePage({
+  searchResult,
+}: SearchMoviePageProps) {
   const setPage = useSetRecoilState(pageState);
-
-  const [loadedDone, setLoadedDone] = useState<boolean>(false);
 
   const [searchMovieData, setSearchMovieData] =
     useRecoilState(searchMovieDataState);
@@ -31,30 +36,6 @@ export default function SearchMoviePage() {
   useEffect(() => {
     setPage(3);
   }, []);
-
-  useEffect(() => {
-    // 기존 데이터 초기화
-    setSearchMovieData({ results: [] });
-
-    axios
-      .get(`/api/search/movie`, {
-        params: {
-          api_key: process.env.API_KEY,
-          region: "KR",
-          language: "ko-KR",
-          query: queryStr,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setSearchMovieData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    setLoadedDone(true);
-  }, [queryStr]);
 
   const searchTypesKo = ["영화", "TV"];
   const selectedClass = `text-primary border-b-4 border-primary`;
@@ -90,14 +71,15 @@ export default function SearchMoviePage() {
                 router.push(
                   `/search/${searchTypes[i]}/${searchQuery || queryStr}`
                 );
-              }}>
+              }}
+            >
               {v}
             </p>
           ))}
         </div>
         {/* ITEMS */}
         <div className="mt-10 flex flex-wrap justify-evenly animate-fade-up">
-          {searchMovieData?.results.map((v, i) => (
+          {searchResult.map((v, i) => (
             <Poster
               key={i}
               id={v.id}
@@ -110,13 +92,38 @@ export default function SearchMoviePage() {
             />
           ))}
           {/* LOADING WHILE FETCHING DATA */}
-          {loadedDone === true && searchMovieData.results.length === 0 ? (
-            <p>검색 결과 없음</p>
-          ) : (
-            ""
-          )}
+          {searchResult.length === 0 ? <p>검색 결과 없음</p> : ""}
         </div>
       </div>
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const { queryStr } = params as { queryStr: string };
+  const baseUrl = "https://api.themoviedb.org/3";
+
+  try {
+    //  Fetching now playing movies
+    const res = await axios.get(`${baseUrl}/search/movie`, {
+      params: {
+        api_key: process.env.API_KEY,
+        region: "KR",
+        language: "ko-KR",
+        query: queryStr,
+      },
+    });
+
+    const searchResult = res.data.results;
+
+    return {
+      props: { searchResult },
+    };
+  } catch (error) {
+    return {
+      props: {
+        error: error,
+      },
+    };
+  }
+};

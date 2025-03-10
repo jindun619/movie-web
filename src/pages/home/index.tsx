@@ -46,7 +46,8 @@ export default function HomePage({
             pagination: false,
             padding: 0,
           }}
-          aria-label="React Splide Example">
+          aria-label="React Splide Example"
+        >
           {movies.map((v, i) => (
             <SplideSlide key={i}>
               <Poster
@@ -71,7 +72,8 @@ export default function HomePage({
             perMove: 1,
             pagination: false,
           }}
-          aria-label="React Splide Example">
+          aria-label="React Splide Example"
+        >
           {tvs.map((v, i) => (
             <SplideSlide key={i}>
               <Poster
@@ -122,7 +124,7 @@ export async function getServerSideProps() {
   } catch (error) {
     return {
       props: {
-        error: "aa",
+        error: error,
       },
     };
   }

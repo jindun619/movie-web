@@ -10,91 +10,41 @@ import Poster from "@/components/Poster";
 
 import { TvType } from "@/types";
 
-export default function TvIndexPage() {
+interface TvIndexPageProps {
+  airing_today: TvType[];
+  on_the_air: TvType[];
+  popular: TvType[];
+  top_rated: TvType[];
+}
+export default function TvIndexPage({
+  airing_today,
+  on_the_air,
+  popular,
+  top_rated,
+}: TvIndexPageProps) {
   const setPage = useSetRecoilState(pageState);
 
   const [selected, setSelected] = useRecoilState(tvSelectedState);
 
-  type TvsType = {
-    results: TvType[];
-  };
-
-  const [selectedTvs, setSelectedTvs] = useState<TvsType>();
+  const [selectedTvs, setSelectedTvs] = useState<TvType[] | undefined>();
 
   useEffect(() => {
     setPage(2);
   }, []);
 
   useEffect(() => {
-    setSelectedTvs({ results: [] });
     switch (selected) {
       case 0:
-        // Fetching airingToday data
-        axios
-          .get(`/api/tv/airing_today`, {
-            params: {
-              api_key: process.env.API_KEY,
-              region: "KR",
-              language: "ko-KR",
-            },
-          })
-          .then((res) => {
-            setSelectedTvs(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        setSelectedTvs(airing_today);
         break;
       case 1:
-        // Fetching onTheAir data
-        axios
-          .get(`/api/tv/on_the_air`, {
-            params: {
-              api_key: process.env.API_KEY,
-              region: "KR",
-              language: "ko-KR",
-            },
-          })
-          .then((res) => {
-            setSelectedTvs(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        setSelectedTvs(on_the_air);
         break;
       case 2:
-        // Fetching popular data
-        axios
-          .get(`/api/tv/popular`, {
-            params: {
-              api_key: process.env.API_KEY,
-              region: "KR",
-              language: "ko-KR",
-            },
-          })
-          .then((res) => {
-            setSelectedTvs(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        setSelectedTvs(popular);
         break;
       case 3:
-        // Fetching top_rated data
-        axios
-          .get(`/api/tv/top_rated`, {
-            params: {
-              api_key: process.env.API_KEY,
-              region: "KR",
-              language: "ko-KR",
-            },
-          })
-          .then((res) => {
-            setSelectedTvs(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        setSelectedTvs(top_rated);
         break;
     }
   }, [selected]);
@@ -130,14 +80,15 @@ export default function TvIndexPage() {
                 }`}
                 onClick={() => {
                   setSelected(i);
-                }}>
+                }}
+              >
                 {v}
               </p>
             ))}
           </div>
         </div>
         <div className="flex flex-wrap justify-evenly animate-fade-up">
-          {selectedTvs.results.map((v, i) => (
+          {selectedTvs.map((v, i) => (
             <Poster
               key={i}
               type="tv"
@@ -158,5 +109,62 @@ export default function TvIndexPage() {
         <span className="loading loading-spinner loading-lg"></span>
       </div>
     );
+  }
+}
+
+export async function getServerSideProps() {
+  const baseUrl = "https://api.themoviedb.org/3";
+
+  try {
+    //  Fetching airing today tvs
+    const res1 = await axios.get(`${baseUrl}/tv/airing_today`, {
+      params: {
+        api_key: process.env.API_KEY,
+        region: "KR",
+        language: "ko-KR",
+      },
+    });
+
+    // Fetching on the air tvs
+    const res2 = await axios.get(`${baseUrl}/tv/on_the_air`, {
+      params: {
+        api_key: process.env.API_KEY,
+        region: "KR",
+        language: "ko-KR",
+      },
+    });
+
+    // Fetching popular tvs
+    const res3 = await axios.get(`${baseUrl}/tv/popular`, {
+      params: {
+        api_key: process.env.API_KEY,
+        region: "KR",
+        language: "ko-KR",
+      },
+    });
+
+    // Fetching top rated tvs
+    const res4 = await axios.get(`${baseUrl}/tv/top_rated`, {
+      params: {
+        api_key: process.env.API_KEY,
+        region: "KR",
+        language: "ko-KR",
+      },
+    });
+
+    const airing_today = res1.data.results;
+    const on_the_air = res2.data.results;
+    const popular = res3.data.results;
+    const top_rated = res4.data.results;
+
+    return {
+      props: { airing_today, on_the_air, popular, top_rated },
+    };
+  } catch (error) {
+    return {
+      props: {
+        error: error,
+      },
+    };
   }
 }

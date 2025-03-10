@@ -10,7 +10,16 @@ import Poster from "@/components/Poster";
 
 import { MovieType } from "@/types";
 
-export default function MovieIndexPage() {
+interface MovieIndexPageProps {
+  now_playing: MovieType[];
+  popular: MovieType[];
+  top_rated: MovieType[];
+}
+export default function MovieIndexPage({
+  now_playing,
+  popular,
+  top_rated,
+}: MovieIndexPageProps) {
   const setPage = useSetRecoilState(pageState);
 
   const [selected, setSelected] = useRecoilState(movieSelectedState);
@@ -18,65 +27,24 @@ export default function MovieIndexPage() {
   type MoviesType = {
     results: MovieType[];
   };
-  const [selectedMovies, setSelectedMovies] = useState<MoviesType>();
+  const [selectedMovies, setSelectedMovies] = useState<
+    MovieType[] | undefined
+  >();
 
   useEffect(() => {
     setPage(1);
   }, []);
 
   useEffect(() => {
-    setSelectedMovies({ results: [] });
     switch (selected) {
       case 0:
-        // Fetching now_playing data
-        axios
-          .get(`/api/movie/now_playing`, {
-            params: {
-              api_key: process.env.API_KEY,
-              region: "KR",
-              language: "ko-KR",
-            },
-          })
-          .then((res) => {
-            setSelectedMovies(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        setSelectedMovies(now_playing);
         break;
       case 1:
-        // Fetching popular data
-        axios
-          .get(`/api/movie/popular`, {
-            params: {
-              api_key: process.env.API_KEY,
-              region: "KR",
-              language: "ko-KR",
-            },
-          })
-          .then((res) => {
-            setSelectedMovies(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        setSelectedMovies(popular);
         break;
       case 2:
-        // Fetching top_rated data
-        axios
-          .get(`/api/movie/top_rated`, {
-            params: {
-              api_key: process.env.API_KEY,
-              region: "KR",
-              language: "ko-KR",
-            },
-          })
-          .then((res) => {
-            setSelectedMovies(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        setSelectedMovies(top_rated);
         break;
     }
   }, [selected]);
@@ -107,14 +75,15 @@ export default function MovieIndexPage() {
                 }`}
                 onClick={() => {
                   setSelected(i);
-                }}>
+                }}
+              >
                 {v}
               </p>
             ))}
           </div>
         </div>
         <div className="flex flex-wrap justify-evenly">
-          {selectedMovies.results.map((v, i) => (
+          {selectedMovies.map((v, i) => (
             <Poster
               key={i}
               type="movie"
@@ -135,5 +104,52 @@ export default function MovieIndexPage() {
         <span className="loading loading-spinner loading-lg"></span>
       </div>
     );
+  }
+}
+
+export async function getServerSideProps() {
+  const baseUrl = "https://api.themoviedb.org/3";
+
+  try {
+    //  Fetching now playing movies
+    const res1 = await axios.get(`${baseUrl}/movie/now_playing`, {
+      params: {
+        api_key: process.env.API_KEY,
+        region: "KR",
+        language: "ko-KR",
+      },
+    });
+
+    // Fetching popular movies
+    const res2 = await axios.get(`${baseUrl}/movie/popular`, {
+      params: {
+        api_key: process.env.API_KEY,
+        region: "KR",
+        language: "ko-KR",
+      },
+    });
+
+    // Fetching top rated movies
+    const res3 = await axios.get(`${baseUrl}/movie/top_rated`, {
+      params: {
+        api_key: process.env.API_KEY,
+        region: "KR",
+        language: "ko-KR",
+      },
+    });
+
+    const now_playing = res1.data.results;
+    const popular = res2.data.results;
+    const top_rated = res3.data.results;
+
+    return {
+      props: { now_playing, popular, top_rated },
+    };
+  } catch (error) {
+    return {
+      props: {
+        error: error,
+      },
+    };
   }
 }
