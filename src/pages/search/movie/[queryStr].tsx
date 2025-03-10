@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { pageState } from "@/recoil/page";
-import { searchMovieDataState } from "@/recoil/searchMovieData";
 import { searchQueryState } from "@/recoil/searchQuery";
 import { searchTypeState } from "@/recoil/searchType";
 
@@ -23,8 +22,6 @@ export default function SearchMoviePage({
 }: SearchMoviePageProps) {
   const setPage = useSetRecoilState(pageState);
 
-  const [searchMovieData, setSearchMovieData] =
-    useRecoilState(searchMovieDataState);
   const [searchQuery] = useRecoilState(searchQueryState);
 
   const [, setSearchType] = useRecoilState(searchTypeState);
