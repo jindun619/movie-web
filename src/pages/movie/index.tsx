@@ -15,11 +15,11 @@ interface MovieIndexPageProps {
   popular: MovieType[];
   top_rated: MovieType[];
 }
-export default function MovieIndexPage({
+export const MovieIndexPage = ({
   now_playing,
   popular,
   top_rated,
-}: MovieIndexPageProps) {
+}: MovieIndexPageProps) => {
   const setPage = useSetRecoilState(pageState);
 
   const [selected, setSelected] = useRecoilState(movieSelectedState);
@@ -105,9 +105,9 @@ export default function MovieIndexPage({
       </div>
     );
   }
-}
+};
 
-export async function getServerSideProps() {
+export const getServerSideProps = async () => {
   const baseUrl = "https://api.themoviedb.org/3";
 
   try {
@@ -152,4 +152,6 @@ export async function getServerSideProps() {
       },
     };
   }
-}
+};
+
+export default MovieIndexPage;

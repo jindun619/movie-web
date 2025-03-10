@@ -4,11 +4,10 @@ import { useRecoilState } from "recoil";
 
 import { searchQueryState } from "@/recoil/searchQuery";
 
-export default function SearchBar({
-  type,
-}: {
+interface SearchBarProps {
   type: number;
-}) {
+}
+export const SearchBar = ({ type }: SearchBarProps) => {
   const [searchQuery, setSearchQuery] = useRecoilState(searchQueryState);
 
   const router = useRouter();
@@ -36,10 +35,11 @@ export default function SearchBar({
           onClick={() => {
             if (searchQuery !== "")
               router.push(`/search/${searchTypes[type]}/${searchQuery}`);
-          }}>
+          }}
+        >
           검색
         </button>
       </div>
     </div>
   );
-}
+};

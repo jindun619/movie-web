@@ -1,8 +1,11 @@
-import DetailsLayout from "./DetailsLayout";
+import { DetailsLayout } from "./DetailsLayout";
 
 import { ProdType } from "@/types";
 
-export default function Prod({ data }: { data: ProdType[] }) {
+interface ProdProps {
+  data: ProdType[];
+}
+export const Prod = ({ data }: ProdProps) => {
   return (
     <DetailsLayout label="제작사">
       <div className="mt-5">
@@ -16,4 +19,4 @@ export default function Prod({ data }: { data: ProdType[] }) {
       </div>
     </DetailsLayout>
   );
-}
+};

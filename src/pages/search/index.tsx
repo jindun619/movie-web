@@ -3,9 +3,9 @@ import { useSetRecoilState } from "recoil";
 import { pageState } from "@/recoil/page";
 
 import Seo from "@/components/Seo";
-import SearchBar from "@/components/SearchBar";
+import { SearchBar } from "@/components/SearchBar";
 
-export default function SearchPage() {
+export const SearchPage = () => {
   const setPage = useSetRecoilState(pageState);
 
   useEffect(() => {
@@ -30,4 +30,6 @@ export default function SearchPage() {
       </div>
     </>
   );
-}
+};
+
+export default SearchPage;

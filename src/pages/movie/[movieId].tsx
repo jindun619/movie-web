@@ -5,30 +5,20 @@ import { pageState } from "@/recoil/page";
 import axios from "axios";
 
 import Seo from "@/components/Seo";
-import Main from "@/components/details/Main";
-import Casts from "@/components/details/Casts";
-import Trailer from "@/components/details/Trailer";
-import Prod from "@/components/details/Prod";
+import { Main } from "@/components/details/Main";
+import { Casts } from "@/components/details/Casts";
+import { Trailer } from "@/components/details/Trailer";
+import { Prod } from "@/components/details/Prod";
 
 import { MovieType, CastType, VideoType } from "@/types";
+import { GetServerSideProps } from "next";
 
-type CreditType = {
-  cast: CastType[];
-};
-
-type VideosType = {
-  results: VideoType[];
-};
-
-export default function MoviePage({
-  movie,
-  credit,
-  videos,
-}: {
+interface MoviePageProps {
   movie: MovieType;
-  credit: CreditType;
-  videos: VideosType;
-}) {
+  casts: CastType[];
+  videos: VideoType[];
+}
+export const MoviePage = ({ movie, casts, videos }: MoviePageProps) => {
   const setPage = useSetRecoilState(pageState);
 
   useEffect(() => {
@@ -40,7 +30,6 @@ export default function MoviePage({
     image: `https://image.tmdb.org/t/p/w1280${movie.poster_path}`,
     description: movie.overview,
   };
-
   return (
     <>
       <Seo title={movie.title} og={og} />
@@ -55,7 +44,7 @@ export default function MoviePage({
         overview={movie.overview}
       />
       <Trailer data={videos} />
-      <Casts data={credit} />
+      <Casts data={casts} />
       <Prod data={movie.production_companies} />
       <img
         className="fixed left-2/4 translate-x-[-50%] top-0 object-cover w-screen h-screen opacity-20 z-[-1]"
@@ -63,9 +52,9 @@ export default function MoviePage({
       />
     </>
   );
-}
+};
 
-export async function getServerSideProps(context: any) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
   const { movieId } = query;
 
@@ -98,11 +87,11 @@ export async function getServerSideProps(context: any) {
     });
 
     const movie = res1.data;
-    const credit = res2.data;
-    const videos = res3.data;
+    const casts = res2.data.cast;
+    const videos = res3.data.results;
 
     return {
-      props: { movie, credit, videos },
+      props: { movie, casts, videos },
     };
   } catch (err) {
     console.log("There was an Error:", err);
@@ -114,4 +103,6 @@ export async function getServerSideProps(context: any) {
       },
     };
   }
-}
+};
+
+export default MoviePage;

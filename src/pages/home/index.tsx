@@ -12,13 +12,11 @@ import Poster from "@/components/Poster";
 
 import { MovieType2, TvType2 } from "@/types";
 
-export default function HomePage({
-  movies,
-  tvs,
-}: {
+interface HomePageProps {
   movies: MovieType2[];
   tvs: TvType2[];
-}) {
+}
+export const HomePage = ({ movies, tvs }: HomePageProps) => {
   const setPage = useSetRecoilState(pageState);
 
   useEffect(() => {
@@ -91,7 +89,7 @@ export default function HomePage({
       </div>
     </>
   );
-}
+};
 
 export async function getServerSideProps() {
   const baseUrl = "https://api.themoviedb.org/3";
@@ -129,3 +127,5 @@ export async function getServerSideProps() {
     };
   }
 }
+
+export default HomePage;

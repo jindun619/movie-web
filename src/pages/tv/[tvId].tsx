@@ -5,33 +5,24 @@ import { pageState } from "@/recoil/page";
 import axios from "axios";
 
 import Seo from "@/components/Seo";
-import Main from "@/components/details/Main";
-import Casts from "@/components/details/Casts";
-import Trailer from "@/components/details/Trailer";
-import Prod from "@/components/details/Prod";
+import { Main } from "@/components/details/Main";
+import { Casts } from "@/components/details/Casts";
+import { Trailer } from "@/components/details/Trailer";
+import { Prod } from "@/components/details/Prod";
 
 import { TvType, CastType, VideoType } from "@/types";
+import { GetServerSideProps } from "next";
 
-type CreditType = {
-  cast: CastType[];
-};
-
-type VideosType = {
-  results: VideoType[];
-};
-
-export default function MoviePage({
-  tv,
-  credit,
-  videos,
-}: {
+interface TvPageProps {
   tv: TvType;
-  credit: CreditType;
-  videos: VideosType;
-}) {
+  casts: CastType[];
+  videos: VideoType[];
+}
+export const TvPage = ({ tv, casts, videos }: TvPageProps) => {
   const setPage = useSetRecoilState(pageState);
 
   useEffect(() => {
+    console.log(tv, casts, videos);
     setPage(2);
   }, []);
 
@@ -54,7 +45,7 @@ export default function MoviePage({
         overview={tv.overview}
       />
       <Trailer data={videos} />
-      <Casts data={credit} />
+      <Casts data={casts} />
       <Prod data={tv.production_companies} />
       <img
         className="fixed left-2/4 translate-x-[-50%] top-0 object-cover w-screen h-screen opacity-20 z-[-1]"
@@ -62,10 +53,9 @@ export default function MoviePage({
       />
     </>
   );
-}
+};
 
-export async function getServerSideProps(context: any) {
-  const { query } = context;
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { tvId } = query;
 
   try {
@@ -97,11 +87,11 @@ export async function getServerSideProps(context: any) {
     });
 
     const tv = res1.data;
-    const credit = res2.data;
-    const videos = res3.data;
+    const casts = res2.data.cast;
+    const videos = res3.data.results;
 
     return {
-      props: { tv, credit, videos },
+      props: { tv, casts, videos },
     };
   } catch (err) {
     console.log("There was an Error:", err);
@@ -113,4 +103,6 @@ export async function getServerSideProps(context: any) {
       },
     };
   }
-}
+};
+
+export default TvPage;

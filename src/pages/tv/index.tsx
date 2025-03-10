@@ -16,12 +16,12 @@ interface TvIndexPageProps {
   popular: TvType[];
   top_rated: TvType[];
 }
-export default function TvIndexPage({
+export const TvIndexPage = ({
   airing_today,
   on_the_air,
   popular,
   top_rated,
-}: TvIndexPageProps) {
+}: TvIndexPageProps) => {
   const setPage = useSetRecoilState(pageState);
 
   const [selected, setSelected] = useRecoilState(tvSelectedState);
@@ -110,9 +110,9 @@ export default function TvIndexPage({
       </div>
     );
   }
-}
+};
 
-export async function getServerSideProps() {
+export const getServerSideProps = async () => {
   const baseUrl = "https://api.themoviedb.org/3";
 
   try {
@@ -167,4 +167,6 @@ export async function getServerSideProps() {
       },
     };
   }
-}
+};
+
+export default TvIndexPage;

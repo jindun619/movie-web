@@ -47,16 +47,6 @@ type TvType2 = {
   vote_average: number;
 };
 
-type PosterType = {
-  type: string; //movie or tv
-  id: number;
-  poster_path: string;
-  title: string;
-  date: string;
-  vote_average: number;
-  overview: string;
-};
-
 type CastType = {
   id: number;
   name: string;
@@ -82,7 +72,6 @@ export type {
   MovieType2,
   TvType,
   TvType2,
-  PosterType,
   CastType,
   VideoType,
   ProdType,

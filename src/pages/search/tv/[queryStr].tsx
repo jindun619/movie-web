@@ -10,16 +10,14 @@ import axios from "axios";
 
 import Seo from "@/components/Seo";
 import Poster from "@/components/Poster";
-import SearchBar from "@/components/SearchBar";
+import { SearchBar } from "@/components/SearchBar";
 import { GetServerSideProps } from "next";
 import { TvType2 } from "@/types";
 
 interface SearchMoviePageProps {
   searchResult: TvType2[];
 }
-export default function SearchMoviePage({
-  searchResult,
-}: SearchMoviePageProps) {
+export const SearchMoviePage = ({ searchResult }: SearchMoviePageProps) => {
   const setPage = useSetRecoilState(pageState);
 
   const [searchQuery] = useRecoilState(searchQueryState);
@@ -94,7 +92,7 @@ export default function SearchMoviePage({
       </div>
     </>
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { queryStr } = params as { queryStr: string };
@@ -124,3 +122,5 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     };
   }
 };
+
+export default SearchMoviePage;

@@ -1,12 +1,10 @@
 import Youtube from "react-youtube";
 
-export default function YoutubePlayer({
-  videoId,
-  videoName,
-}: {
+interface YoutubePlayerProps {
   videoId: string;
   videoName: string;
-}) {
+}
+export const YoutubePlayer = ({ videoId, videoName }: YoutubePlayerProps) => {
   const opts = {
     width: "100%",
     height: "100%",
@@ -25,4 +23,4 @@ export default function YoutubePlayer({
       <p className="mt-3 text-lg text-primary-content font-bold">{videoName}</p>
     </div>
   );
-}
+};
