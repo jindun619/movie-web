@@ -43,12 +43,14 @@ const Navbar = () => {
     <div
       className={`justify-between sticky top-0 navbar bg-primary z-[10] ${opacity}`}
       onMouseOver={() => setIsHovering(true)}
-      onMouseOut={() => setIsHovering(false)}>
+      onMouseOut={() => setIsHovering(false)}
+    >
       <div>
         <Link
           href="/"
-          className="btn btn-ghost normal-case text-primary-content text-xl">
-          조성민머리Flix
+          className="btn btn-ghost normal-case text-primary-content text-xl"
+        >
+          Jindun Movie Web
         </Link>
       </div>
       <div>
@@ -59,7 +61,8 @@ const Navbar = () => {
               className={`text-lg md:text-xl font-bold px-2 md:px-5 h-full ${getColor(
                 i
               )}`}
-              href={v.url}>
+              href={v.url}
+            >
               {v.name}
             </Link>
           );
